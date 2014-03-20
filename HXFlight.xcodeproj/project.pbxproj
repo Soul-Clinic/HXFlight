@@ -14,14 +14,16 @@
 		366CB6F618DB572D007E9A6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB6F518DB572D007E9A6F /* main.m */; };
 		366CB6FA18DB572D007E9A6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB6F918DB572D007E9A6F /* AppDelegate.m */; };
 		366CB6FD18DB572D007E9A6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366CB6FB18DB572D007E9A6F /* Main.storyboard */; };
-		366CB70018DB572D007E9A6F /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB6FF18DB572D007E9A6F /* FirstViewController.m */; };
-		366CB70318DB572D007E9A6F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB70218DB572D007E9A6F /* SecondViewController.m */; };
+		366CB70018DB572D007E9A6F /* Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB6FF18DB572D007E9A6F /* Home.m */; };
+		366CB70318DB572D007E9A6F /* MyHuaxia.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB70218DB572D007E9A6F /* MyHuaxia.m */; };
 		366CB70518DB572D007E9A6F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 366CB70418DB572D007E9A6F /* Images.xcassets */; };
 		366CB70C18DB572D007E9A6F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB70B18DB572D007E9A6F /* XCTest.framework */; };
 		366CB70D18DB572D007E9A6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6E918DB572D007E9A6F /* Foundation.framework */; };
 		366CB70E18DB572D007E9A6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6ED18DB572D007E9A6F /* UIKit.framework */; };
 		366CB71618DB572D007E9A6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 366CB71418DB572D007E9A6F /* InfoPlist.strings */; };
 		366CB71818DB572D007E9A6F /* HXFlightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB71718DB572D007E9A6F /* HXFlightTests.m */; };
+		366CB72418DB5AF9007E9A6F /* PalmHuaxia.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB72318DB5AF9007E9A6F /* PalmHuaxia.m */; };
+		366CB72718DB5B28007E9A6F /* More.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB72618DB5B28007E9A6F /* More.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,16 +48,20 @@
 		366CB6F818DB572D007E9A6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		366CB6F918DB572D007E9A6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		366CB6FC18DB572D007E9A6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		366CB6FE18DB572D007E9A6F /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		366CB6FF18DB572D007E9A6F /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		366CB70118DB572D007E9A6F /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		366CB70218DB572D007E9A6F /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		366CB6FE18DB572D007E9A6F /* Home.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
+		366CB6FF18DB572D007E9A6F /* Home.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Home.m; sourceTree = "<group>"; };
+		366CB70118DB572D007E9A6F /* MyHuaxia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyHuaxia.h; sourceTree = "<group>"; };
+		366CB70218DB572D007E9A6F /* MyHuaxia.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyHuaxia.m; sourceTree = "<group>"; };
 		366CB70418DB572D007E9A6F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		366CB70A18DB572D007E9A6F /* HXFlightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HXFlightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		366CB70B18DB572D007E9A6F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		366CB71318DB572D007E9A6F /* HXFlightTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HXFlightTests-Info.plist"; sourceTree = "<group>"; };
 		366CB71518DB572D007E9A6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		366CB71718DB572D007E9A6F /* HXFlightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HXFlightTests.m; sourceTree = "<group>"; };
+		366CB72218DB5AF9007E9A6F /* PalmHuaxia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PalmHuaxia.h; sourceTree = "<group>"; };
+		366CB72318DB5AF9007E9A6F /* PalmHuaxia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PalmHuaxia.m; sourceTree = "<group>"; };
+		366CB72518DB5B28007E9A6F /* More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = More.h; sourceTree = "<group>"; };
+		366CB72618DB5B28007E9A6F /* More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = More.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		366CB6DD18DB572D007E9A6F = {
 			isa = PBXGroup;
 			children = (
+				366CB72118DB5ABF007E9A6F /* ViewControllers */,
 				366CB6EF18DB572D007E9A6F /* HXFlight */,
 				366CB71118DB572D007E9A6F /* HXFlightTests */,
 				366CB6E818DB572D007E9A6F /* Frameworks */,
@@ -118,10 +125,6 @@
 				366CB6F818DB572D007E9A6F /* AppDelegate.h */,
 				366CB6F918DB572D007E9A6F /* AppDelegate.m */,
 				366CB6FB18DB572D007E9A6F /* Main.storyboard */,
-				366CB6FE18DB572D007E9A6F /* FirstViewController.h */,
-				366CB6FF18DB572D007E9A6F /* FirstViewController.m */,
-				366CB70118DB572D007E9A6F /* SecondViewController.h */,
-				366CB70218DB572D007E9A6F /* SecondViewController.m */,
 				366CB70418DB572D007E9A6F /* Images.xcassets */,
 				366CB6F018DB572D007E9A6F /* Supporting Files */,
 			);
@@ -155,6 +158,22 @@
 				366CB71418DB572D007E9A6F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		366CB72118DB5ABF007E9A6F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				366CB6FE18DB572D007E9A6F /* Home.h */,
+				366CB6FF18DB572D007E9A6F /* Home.m */,
+				366CB70118DB572D007E9A6F /* MyHuaxia.h */,
+				366CB70218DB572D007E9A6F /* MyHuaxia.m */,
+				366CB72218DB5AF9007E9A6F /* PalmHuaxia.h */,
+				366CB72318DB5AF9007E9A6F /* PalmHuaxia.m */,
+				366CB72518DB5B28007E9A6F /* More.h */,
+				366CB72618DB5B28007E9A6F /* More.m */,
+			);
+			name = ViewControllers;
+			path = HXFlight;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,9 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				366CB70318DB572D007E9A6F /* SecondViewController.m in Sources */,
+				366CB72718DB5B28007E9A6F /* More.m in Sources */,
+				366CB72418DB5AF9007E9A6F /* PalmHuaxia.m in Sources */,
+				366CB70318DB572D007E9A6F /* MyHuaxia.m in Sources */,
 				366CB6FA18DB572D007E9A6F /* AppDelegate.m in Sources */,
-				366CB70018DB572D007E9A6F /* FirstViewController.m in Sources */,
+				366CB70018DB572D007E9A6F /* Home.m in Sources */,
 				366CB6F618DB572D007E9A6F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +406,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXFlight/HXFlight-Prefix.pch";
 				INFOPLIST_FILE = "HXFlight/HXFlight-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -398,6 +420,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HXFlight/HXFlight-Prefix.pch";
 				INFOPLIST_FILE = "HXFlight/HXFlight-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
