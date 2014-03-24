@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    UITabBarController* _tab;
+}
 @property (strong, nonatomic) UIWindow *window;
-
+@property (assign, nonatomic) float tabBarHeight;
 @end

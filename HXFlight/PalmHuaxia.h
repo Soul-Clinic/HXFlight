@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PalmHuaxia : UIViewController
+@interface PalmHuaxia : UIViewController <UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *marginTop;
+@property (assign, nonatomic) BOOL fromSwiping;
 @end

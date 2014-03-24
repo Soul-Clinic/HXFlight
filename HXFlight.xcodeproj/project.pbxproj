@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3613951918DDEA25002FA4B2 /* ViewOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613951818DDEA25002FA4B2 /* ViewOperation.m */; };
+		3613951F18DE46CE002FA4B2 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613951E18DE46CE002FA4B2 /* Menu.m */; };
+		3613952518DF2416002FA4B2 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613952418DF2416002FA4B2 /* Profile.m */; };
 		366CB6EA18DB572D007E9A6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6E918DB572D007E9A6F /* Foundation.framework */; };
 		366CB6EC18DB572D007E9A6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6EB18DB572D007E9A6F /* CoreGraphics.framework */; };
 		366CB6EE18DB572D007E9A6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6ED18DB572D007E9A6F /* UIKit.framework */; };
@@ -24,6 +27,10 @@
 		366CB71818DB572D007E9A6F /* HXFlightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB71718DB572D007E9A6F /* HXFlightTests.m */; };
 		366CB72418DB5AF9007E9A6F /* PalmHuaxia.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB72318DB5AF9007E9A6F /* PalmHuaxia.m */; };
 		366CB72718DB5B28007E9A6F /* More.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB72618DB5B28007E9A6F /* More.m */; };
+		366CB77118DB883C007E9A6F /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB77018DB883C007E9A6F /* Common.m */; };
+		366CB77518DB8866007E9A6F /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 366CB77418DB8866007E9A6F /* UIView+Position.m */; };
+		36A3E56718DF935900FAF7E8 /* PatternLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3E56618DF935900FAF7E8 /* PatternLockView.m */; };
+		36A3E56A18DFBA5900FAF7E8 /* PatternLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3E56918DFBA5900FAF7E8 /* PatternLock.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3613951718DDEA25002FA4B2 /* ViewOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewOperation.h; sourceTree = "<group>"; };
+		3613951818DDEA25002FA4B2 /* ViewOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewOperation.m; sourceTree = "<group>"; };
+		3613951D18DE46CE002FA4B2 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		3613951E18DE46CE002FA4B2 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
+		3613952318DF2416002FA4B2 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = ../Profile.h; sourceTree = "<group>"; };
+		3613952418DF2416002FA4B2 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = ../Profile.m; sourceTree = "<group>"; };
 		366CB6E618DB572D007E9A6F /* HXFlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HXFlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		366CB6E918DB572D007E9A6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		366CB6EB18DB572D007E9A6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +75,14 @@
 		366CB72318DB5AF9007E9A6F /* PalmHuaxia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PalmHuaxia.m; sourceTree = "<group>"; };
 		366CB72518DB5B28007E9A6F /* More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = More.h; sourceTree = "<group>"; };
 		366CB72618DB5B28007E9A6F /* More.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = More.m; sourceTree = "<group>"; };
+		366CB76F18DB883C007E9A6F /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		366CB77018DB883C007E9A6F /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		366CB77318DB8866007E9A6F /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
+		366CB77418DB8866007E9A6F /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
+		36A3E56518DF935900FAF7E8 /* PatternLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternLockView.h; sourceTree = "<group>"; };
+		36A3E56618DF935900FAF7E8 /* PatternLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternLockView.m; sourceTree = "<group>"; };
+		36A3E56818DFBA5900FAF7E8 /* PatternLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternLock.h; sourceTree = "<group>"; };
+		36A3E56918DFBA5900FAF7E8 /* PatternLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternLock.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				366CB72118DB5ABF007E9A6F /* ViewControllers */,
+				366CB77218DB8841007E9A6F /* Toolkit */,
 				366CB6EF18DB572D007E9A6F /* HXFlight */,
 				366CB71118DB572D007E9A6F /* HXFlightTests */,
 				366CB6E818DB572D007E9A6F /* Frameworks */,
@@ -163,6 +185,8 @@
 		366CB72118DB5ABF007E9A6F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				3613952318DF2416002FA4B2 /* Profile.h */,
+				3613952418DF2416002FA4B2 /* Profile.m */,
 				366CB6FE18DB572D007E9A6F /* Home.h */,
 				366CB6FF18DB572D007E9A6F /* Home.m */,
 				366CB70118DB572D007E9A6F /* MyHuaxia.h */,
@@ -171,9 +195,28 @@
 				366CB72318DB5AF9007E9A6F /* PalmHuaxia.m */,
 				366CB72518DB5B28007E9A6F /* More.h */,
 				366CB72618DB5B28007E9A6F /* More.m */,
+				3613951D18DE46CE002FA4B2 /* Menu.h */,
+				3613951E18DE46CE002FA4B2 /* Menu.m */,
+				36A3E56818DFBA5900FAF7E8 /* PatternLock.h */,
+				36A3E56918DFBA5900FAF7E8 /* PatternLock.m */,
 			);
 			name = ViewControllers;
 			path = HXFlight;
+			sourceTree = "<group>";
+		};
+		366CB77218DB8841007E9A6F /* Toolkit */ = {
+			isa = PBXGroup;
+			children = (
+				3613951718DDEA25002FA4B2 /* ViewOperation.h */,
+				3613951818DDEA25002FA4B2 /* ViewOperation.m */,
+				366CB77318DB8866007E9A6F /* UIView+Position.h */,
+				366CB77418DB8866007E9A6F /* UIView+Position.m */,
+				366CB76F18DB883C007E9A6F /* Common.h */,
+				366CB77018DB883C007E9A6F /* Common.m */,
+				36A3E56518DF935900FAF7E8 /* PatternLockView.h */,
+				36A3E56618DF935900FAF7E8 /* PatternLockView.m */,
+			);
+			name = Toolkit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,8 +320,15 @@
 				366CB72418DB5AF9007E9A6F /* PalmHuaxia.m in Sources */,
 				366CB70318DB572D007E9A6F /* MyHuaxia.m in Sources */,
 				366CB6FA18DB572D007E9A6F /* AppDelegate.m in Sources */,
+				3613951F18DE46CE002FA4B2 /* Menu.m in Sources */,
 				366CB70018DB572D007E9A6F /* Home.m in Sources */,
+				36A3E56718DF935900FAF7E8 /* PatternLockView.m in Sources */,
+				366CB77518DB8866007E9A6F /* UIView+Position.m in Sources */,
+				3613951918DDEA25002FA4B2 /* ViewOperation.m in Sources */,
+				3613952518DF2416002FA4B2 /* Profile.m in Sources */,
+				36A3E56A18DFBA5900FAF7E8 /* PatternLock.m in Sources */,
 				366CB6F618DB572D007E9A6F /* main.m in Sources */,
+				366CB77118DB883C007E9A6F /* Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +535,7 @@
 				366CB71D18DB572D007E9A6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		366CB71E18DB572D007E9A6F /* Build configuration list for PBXNativeTarget "HXFlightTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +544,7 @@
 				366CB72018DB572D007E9A6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

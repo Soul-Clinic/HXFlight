@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface More : UIViewController
+@interface More : UITableViewController
+@property (strong, nonatomic, readonly) UIImage* screenshot;
 
 @end
