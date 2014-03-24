@@ -32,7 +32,11 @@ NSString * const kSetSucceed = @"设置成功! 请记住您的密码";
 //    self.pattern.margin = 15;
 //	self.pattern.column = 3;
 //  self.pattern.accuracy = 0;
-    self.pattern.dotSize = CGSizeMake(35, 35);
+//    self.pattern.dotSize = CGSizeMake(35, 35);
+    if (!IS_IPHONE5) {
+        NSLog(@"iPhone 4");
+        self.pattern.margin = UIEdgeInsetsMake(60, self.pattern.margin.left, 0, self.pattern.margin.right);
+    }
     self.pattern.delegate = self;
     self.pattern.background = [UIImage imageNamed:@"background"];
     password = userDefaultsStringForKey(kPasswordKey);
@@ -40,13 +44,17 @@ NSString * const kSetSucceed = @"设置成功! 请记住您的密码";
         self.infoLabel.text = kSetPassword;
     }
     else {
+        NSLog(@"password is %@", password);
         self.infoLabel.text = kInputPassword;
     }
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self inputPasswordWrong:self.pattern];
+    if (password) {
+        [self inputPasswordWrong:self.pattern];
+    }
+
 }
 - (void)patternLockView:(PatternLockView *)patternLockView didFinishWithValue:(NSString *)value
 {

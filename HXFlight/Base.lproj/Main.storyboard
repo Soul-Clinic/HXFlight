@@ -418,7 +418,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入手势密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypB-kf-Psp">
-                                        <rect key="frame" x="111" y="43" width="98" height="17"/>
+                                        <rect key="frame" x="111" y="50" width="98" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -427,7 +427,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="ypB-kf-Psp" firstAttribute="top" secondItem="py8-xu-5S4" secondAttribute="top" constant="43" id="0ti-9r-WTM"/>
+                                    <constraint firstItem="ypB-kf-Psp" firstAttribute="top" secondItem="py8-xu-5S4" secondAttribute="top" constant="50" id="0ti-9r-WTM"/>
                                     <constraint firstAttribute="centerX" secondItem="ypB-kf-Psp" secondAttribute="centerX" id="MdM-eY-h4t"/>
                                 </constraints>
                             </view>
@@ -648,7 +648,7 @@
                             <constraint firstItem="EPC-mF-ALe" firstAttribute="top" secondItem="idA-0h-hNZ" secondAttribute="top" id="fHS-2e-jUo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="掌上华夏" image="51CA971A-1AF9-4F05-B72A-CC11EC05B45C" id="wFY-SG-Oec"/>
+                    <tabBarItem key="tabBarItem" title="掌上华夏" image="A95A6A38-387F-492B-8503-F6BA04AF9BC5" id="wFY-SG-Oec"/>
                     <connections>
                         <outlet property="marginBottom" destination="2Qs-x7-nKl" id="bDy-Lx-Ztc"/>
                         <outlet property="marginTop" destination="eRg-Zg-kZa" id="b47-Rg-eUA"/>
@@ -661,7 +661,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="51CA971A-1AF9-4F05-B72A-CC11EC05B45C" width="27" height="26">
+        <image name="A95A6A38-387F-492B-8503-F6BA04AF9BC5" width="27" height="26">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

@@ -14,7 +14,7 @@
 {
     NSMutableArray* selections;
     CGPoint** coordinates;
-    BOOL inError, drawing, inSuccess;
+    BOOL drawing, inError, inSuccess, initialized;
     BOOL** dotSelected;
     CGPoint currentLocation;
 }
@@ -51,37 +51,22 @@
     self.enabled = YES;
     self.normalDot = [UIImage imageNamed:@"dot_normal"];
     self.selectedDot = [UIImage imageNamed:@"dot_select"];
-    self.errorDot = [UIImage imageNamed:@"dot_error"];
     self.dotSize = CGSizeMake(49, 49);
     self.lineWidthFactor = 0.18;
     self.normalColor = rgba(31, 96, 212, 0.71);
     self.errorColor = rgba(182, 66, 145, 0.52); //rgba(150, 40, 132, 0.71);//rgba(199, 45, 45, 0.6);
     self.successColor = rgba(139, 201, 60, 0.8);
     self.shadowColor = rgba(0, 0, 0, 0.5);
-    self.margin = 30;
+    self.margin = UIEdgeInsetsMake(40, 30, 0, 30);
     self.column = 3;
     self.accuracy = 0.3;
 	self.background = nil;
+    self.errorDot = [UIImage imageNamed:@"dot_error"];
 
     selections = [NSMutableArray array];
+	initialized = YES;
+}
 
-}
-- (void)setFrame:(CGRect)frame
-{
-	[super setFrame:frame];
-    NSLog(@"Set frame");
-    [self updateCoordinate];
-}
-- (void)setMargin:(float)margin
-{
-    _margin = margin;
-    [self updateCoordinate];
-}
-- (void)setDotSize:(CGSize)dotSize
-{
-	_dotSize = dotSize;
-    [self updateCoordinate];
-}
 - (void)setAccuracy:(float)accuracy
 {
     if (accuracy >= 0. && accuracy <= 1) {
@@ -93,12 +78,35 @@
     _background = background;
     [self setNeedsDisplay];
 }
+- (void)setFrame:(CGRect)frame
+{
+	[super setFrame:frame];
+    if (initialized) {
+        [self updateCoordinate];
+    }
+
+}
+- (void)setMargin:(UIEdgeInsets)margin
+{
+    _margin = margin;
+    if (initialized) {
+        [self updateCoordinate];
+    }
+}
+- (void)setDotSize:(CGSize)dotSize
+{
+	_dotSize = dotSize;
+    if (initialized) {
+        [self updateCoordinate];
+    }
+}
 - (void)setColumn:(int)column
 {
     if (column < 2) {
         NSLog(@"Error: column is too small");
     }
-    if (column * _dotSize.width + _margin * 2 >= self.frameWidth) {
+    if (column * _dotSize.width + _margin.left + _margin.right >= self.frameWidth &&
+        column * _dotSize.height + _margin.top + _margin.bottom >= self.frameHeight) {
         NSLog(@"Error: column is too large, you can try to reduce the dot size before setting this");
     }
     else {
@@ -116,29 +124,34 @@
                 dotSelected[i][j] = NO;
             }
         }
-        [self updateCoordinate];
+        if (initialized) {
+            [self updateCoordinate];
+        }
     }
 }
 
 - (void)updateCoordinate
 {
-    float x, y, w = self.frameWidth, h = self.frameHeight, dw = MAX(_dotSize.width, _dotSize.height), padding;
+    float x, y, dw = MAX(_dotSize.width, _dotSize.height), padding,
+    w = self.frameWidth - _margin.left - _margin.right,
+    h = self.frameHeight - _margin.top - _margin.bottom;
 
 	if (h > w) {
-        x = _margin;
-        y = (h - w) / 2 + _margin;
+        x = _margin.left;
+        y = (h - w) / 2 + _margin.top;
 
-        padding = (w - 2 * _margin -  _column * dw) / (_column - 1);
+        padding = (w - _column * dw) / (_column - 1);
         for (int i = 0; i < _column; i++) {
             for (int j = 0; j < _column; j++) {
                 coordinates[i][j] = CGPointMake(x + j * (dw + padding), y + i * (dw + padding));
             }
         }
+
     }
     else {
-		y = _margin;
-        x = (w - h) / 2 + _margin;
-        padding = (h - 2 * _margin -  _column * dw) / (_column - 1);
+		y = _margin.top;
+        x = (w - h) / 2 + _margin.left;
+        padding = (h -  _column * dw) / (_column - 1);
         for (int i = 0; i < _column; i++) {
             for (int j = 0; j < _column; j++) {
                 coordinates[i][j] = CGPointMake(x + j * (dw + padding), y + i * (dw + padding));
@@ -146,7 +159,11 @@
         }
     }
 }
-
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self updateCoordinate];
+}
 - (void)drawRect:(CGRect)rect
 {
 
@@ -215,16 +232,9 @@
             break;
         }
     }
-    CGRect drawingRect = CGRectMake(t.x - _dotSize.width, t.y - _dotSize.height, _dotSize.width * 2, _dotSize.height * 2);
-    if (selections.count) {
-        CGPoint lastDot = coordinates[[selections.lastObject[0] intValue]][[selections.lastObject[1] intValue]];
-        CGRect lastDotRect = CGRectMake(lastDot.x - _dotSize.width, lastDot.y - _dotSize.height,
-                                        _dotSize.width * 2, _dotSize.height * 2);
-        drawingRect = CGRectUnion(drawingRect, lastDotRect);
-    }
-
     currentLocation = t;
     _isDrawing = YES;
+    [self setNeedsDisplay];
 }
 
 
@@ -256,21 +266,7 @@
         }
     }
 	currentLocation = t;
-
-    CGRect drawingRect = CGRectMake(t.x - _dotSize.width, t.y - _dotSize.height, _dotSize.width * 2, _dotSize.height * 2);
-    if (selections.count) {
-
-        NSArray* selection = inside ? selections[MAX(0, (int)selections.count - 2)] : selections[selections.count - 1];
-        CGPoint lastDot = coordinates[[selection[0] intValue]][[selection[1] intValue]];
-        CGRect lastDotRect = CGRectMake(lastDot.x - _dotSize.width, lastDot.y - _dotSize.height,
-                                        _dotSize.width * 2, _dotSize.height * 2);
-
-        drawingRect = CGRectUnion(drawingRect, lastDotRect);
-    }
-
-
-    [self setNeedsDisplayInRect:drawingRect];
-
+    [self setNeedsDisplay];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event

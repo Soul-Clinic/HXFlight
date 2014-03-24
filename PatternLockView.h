@@ -28,7 +28,7 @@
 @property (assign, nonatomic) int column;
 @property (assign, nonatomic) CGSize dotSize;
 @property (assign, nonatomic) float lineWidthFactor;
-@property (assign, nonatomic) float margin;
+@property (assign, nonatomic) UIEdgeInsets margin;
 @property (assign, nonatomic) BOOL enabled;
 /**
  The accuracy of selection area, should be 0 ~ 1.0
