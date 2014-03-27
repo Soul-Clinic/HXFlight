@@ -38,7 +38,7 @@
         UIImageView* homeBk = ((Home*)(self.tabBarController.viewControllers[0])).background;
         _background = [[UIImageView alloc] init];
         _background.frame = homeBk.frame;
-        _background.frameY = -self.tableView.contentInset.top;
+        _background.y = -self.tableView.contentInset.top;
         _background.image = homeBk.image;
         _background.contentMode = homeBk.contentMode;
         [self.view addSubview:_background];

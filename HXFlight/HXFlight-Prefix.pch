@@ -13,11 +13,6 @@
 #ifndef __IPHONE_5_0
 #warning "This project uses features only available in iOS SDK 5.0 and later."
 #endif
-#ifdef __FEDEBUG
-#define FELog(s, ...) NSLog(@"%s —> %@", __func__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
-#else
-#define FELog(s, ...)
-#endif
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>

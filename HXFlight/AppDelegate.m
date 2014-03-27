@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+
     UITabBarController *dtbc = [[UITabBarController alloc] init];
     _tabBarHeight = dtbc.tabBar.frame.size.height;
 

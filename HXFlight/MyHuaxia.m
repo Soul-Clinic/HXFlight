@@ -26,7 +26,7 @@
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view, typically from a nib.
-    _marginBottom.constant = self.tabBarController.tabBar.frameHeight;
+    _marginBottom.constant = self.tabBarController.tabBar.height;
     if (!isiOS7()) {
         _marginBottom.constant = 0;
         _marginTop.constant = 0;
@@ -64,14 +64,14 @@
 
         UIImage* icon = [UIImage imageNamed:shortcuts[key]];
         UIButton* button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, MAX(icon.size.width, textWidth), icon.size.height + textHeight + spacing)];
-        float iconX = (button.frameWidth - icon.size.width) / 2,
-        textX = (button.frameWidth - textWidth) / 2;
+        float iconX = (button.width - icon.size.width) / 2,
+        textX = (button.width - textWidth) / 2;
 
 		[button setImage:icon forState:UIControlStateNormal];
         [button setTitle:key forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont systemFontOfSize:14.f]];
-        [button setImageEdgeInsets:UIEdgeInsetsMake(0, iconX, button.frameHeight - icon.size.height , iconX)];
-        [button setTitleEdgeInsets:UIEdgeInsetsMake(icon.size.height, -(button.frameWidth - textX), 0, 0)];
+        [button setImageEdgeInsets:UIEdgeInsetsMake(0, iconX, button.height - icon.size.height , iconX)];
+        [button setTitleEdgeInsets:UIEdgeInsetsMake(icon.size.height, -(button.width - textX), 0, 0)];
 		button.showsTouchWhenHighlighted = YES;
 
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,7 +87,7 @@
         scrollFrame = _scrollView.frame;
         [ViewOperation layoutSubviews:_buttons inScrollView:_scrollView subviewMarginTop:17 countInPages:@[@0, @11, @9]];
     }
-    _scrollView.contentOffset = CGPointMake(_scrollView.frameWidth, -_scrollView.contentInset.top);
+    _scrollView.contentOffset = CGPointMake(_scrollView.width, -_scrollView.contentInset.top);
     if (_fromSwiping) {
         _scrollView.contentOffset = CGPointMake(0, -_scrollView.contentInset.top);
     }
@@ -98,7 +98,7 @@
 
     if (!_leftScreenshot) {
         _leftScreenshot = [[UIImageView alloc] initWithFrame:self.view.frame];
-		_leftScreenshot.frameY = -((isiOS7() ? _scrollView.frameY : 0) + _scrollView.contentInset.top);
+		_leftScreenshot.y = -((isiOS7() ? _scrollView.y : 0) + _scrollView.contentInset.top);
         [_scrollView addSubview:_leftScreenshot];
     }
     if (_fromSwiping) {
@@ -111,7 +111,7 @@
     [super viewWillAppear:animated];
 
     if (_fromSwiping) {
-        [_scrollView setContentOffset:CGPointMake(_scrollView.frameWidth, -_scrollView.contentInset.top) animated:YES];
+        [_scrollView setContentOffset:CGPointMake(_scrollView.width, -_scrollView.contentInset.top) animated:YES];
         _fromSwiping = NO;
     }
     else {

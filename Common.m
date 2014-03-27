@@ -84,19 +84,20 @@ NSString* deviceInformation()
 
 }
 #pragma mark - Objects related
-void printClassTrees(id object)
+@implementation NSObject (debug)
+- (void)printClassTrees
 {
-    Class class = [object class];
-	FELog(@"Self --> %@", NSStringFromClass(class));
+    Class class = [self class];
+	NSLog(@"Self --> %@", NSStringFromClass(class));
 
     while ([class superclass] != [NSObject class]) {
         class = [class superclass];
-        FELog(@"Super -> %@", NSStringFromClass(class));
+        NSLog(@"Super -> %@", NSStringFromClass(class));
     }
 
-    FELog(@"Super -> NSObject\n-------------\n");
+    NSLog(@"Super -> NSObject\n-------------\n");
 }
-
+@end
 #pragma mark -
 
 BOOL isSimulator()
@@ -139,6 +140,152 @@ NSString* getLanguageCode(void)
 {
     return [[NSLocale preferredLanguages] objectAtIndex:0];
 }
+
+
+@implementation UIView (Position)
+
+- (CGPoint)origin {
+    return self.frame.origin;
+}
+
+- (void)setOrigin:(CGPoint)newOrigin {
+    self.frame = CGRectMake(newOrigin.x, newOrigin.y, self.frame.size.width, self.frame.size.height);
+}
+
+- (CGSize)frameSize {
+    return self.frame.size;
+}
+
+- (void)setFrameSize:(CGSize)newSize {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            newSize.width,
+                            newSize.height);
+}
+
+- (CGFloat)x {
+    return self.frame.origin.x;
+}
+
+- (void)setX:(CGFloat)newX {
+    self.frame = CGRectMake(newX,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+- (CGFloat)y {
+    return self.frame.origin.y;
+}
+
+- (void)setY:(CGFloat)newY {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            newY,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+- (CGFloat)right {
+    return self.frame.origin.x + self.frame.size.width;
+}
+
+- (void)setRight:(CGFloat)newRight {
+    self.frame = CGRectMake(newRight - self.frame.size.width,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+- (CGFloat)bottom {
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (void)setBottom:(CGFloat)newBottom {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            newBottom - self.frame.size.height,
+                            self.frame.size.width,
+                            self.frame.size.height);
+}
+
+- (CGFloat)width {
+    return self.frame.size.width;
+}
+
+- (void)setWidth:(CGFloat)newWidth {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            newWidth,
+                            self.frame.size.height);
+}
+
+- (CGFloat)height {
+    return self.frame.size.height;
+}
+
+- (CGFloat)boundsHeight
+{
+    return self.bounds.size.height;
+}
+
+- (CGFloat)boundsWidth
+{
+    return self.bounds.size.width;
+}
+
+- (void)setHeight:(CGFloat)newHeight {
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            self.frame.size.width,
+                            newHeight);
+}
+
+- (void)addCenteredSubview:(UIView *)subview {
+    subview.x = (int)((self.bounds.size.width - subview.width) / 2);
+    subview.y = (int)((self.bounds.size.height - subview.height) / 2);
+    [self addSubview:subview];
+}
+
+- (void)moveToCenterOfSuperview {
+    self.x = (int)((self.superview.bounds.size.width - self.width) / 2);
+    self.y = (int)((self.superview.bounds.size.height - self.height) / 2);
+}
+
+- (void)centerVerticallyInSuperview
+{
+	self.y = (int)((self.superview.bounds.size.height - self.height) / 2);
+}
+
+- (void)centerHorizontallyInSuperview
+{
+	self.x = (int)((self.superview.bounds.size.width - self.width) / 2);
+}
+
+#pragma mark - Print
+- (void)printSubviewsTree
+{
+    NSLog(@"==========================================================================");
+    NSLog(@"%@ {(%.2f, %.2f) (%.2f, %.2f)}:\n",  self.class, self.x, self.y, self.width, self.height );
+    NSLog(@" ");
+    [self printSubviewsIndex:0];
+    NSLog(@" ");
+    NSLog(@"==========================================================================\n\n");
+}
+
+- (void)printSubviewsIndex:(int)index //Private
+{
+    NSMutableString *prefix = [NSMutableString stringWithString:@"\t|"];
+    //    [prefix appendFormat:@"%d", index];
+    for (int i = 0; i < index; i++) {
+        [prefix appendString:@"————"];
+    }
+
+    for (UIView *subview in self.subviews) {
+        NSLog(@"%@%@ \t{(%.2f, %.2f) (%.2f, %.2f)}",  prefix, subview.class, subview.x, subview.y, subview.width, subview.height );
+        [subview printSubviewsIndex:index + 1];
+    }
+}
+@end
+
 
 @implementation UIColor(Image)
 
@@ -371,6 +518,272 @@ NSString* getLanguageCode(void)
 
 
 
+static FECommon *kSingleton;
+
+@implementation FECommon
+
++ (FECommon*)sharedInstance
+{
+    if (kSingleton == nil) {
+        kSingleton = [[FECommon alloc] initSingleton];
+    }
+
+    return kSingleton;
+}
+
+- (id)initSingleton
+{
+    self = [super init];
+    if (self) {
+        _documentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        _tmpPath = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+        _defaultUserAgent = [self generateDefaultUserAgent];
+
+        //键盘
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    }
+
+    return self;
+}
+
+- (id)init
+{
+    return [self.class sharedInstance];
+}
+
+#pragma mark - Notification
+- (void)keyboardWillShow:(NSNotification*)notification
+{
+    CGRect bounds = [[notification.userInfo valueForKey:@"UIKeyboardBoundsUserInfoKey"] CGRectValue];
+    _keyboardWidth = bounds.size.width;
+    _keyboardHeight = bounds.size.height;
+}
+
+- (void)keyboardWillHide:(NSNotification*)notification
+{
+    _keyboardWidth = 0;
+    _keyboardHeight = 0;
+}
+
+#pragma mark - Public
+- (UIColor*)hexRGB:(int)hex alpha:(float)alpha
+{
+    return [UIColor colorWithRed:(hex>>16)/255.0 green:((hex&0x00FF00)>>8)/255.0 blue:(hex&0x0000FF)/255.0 alpha:alpha];
+}
+
+- (NSString*)join:(NSString *)path, ...
+{
+    NSString *toReturn = [path copy];
+
+    va_list argList;
+    id arg;
+    if (path) {
+        va_start(argList, path);
+        while ((arg = va_arg(argList, id))) {
+            toReturn = [toReturn stringByAppendingPathComponent:arg];
+        }
+        va_end(argList);
+    }
+    return toReturn;
+}
+
+- (NSString*)pathForResource:(NSString *)filename
+{
+    NSString *pure = [filename stringByDeletingPathExtension];
+    NSString *type = [filename pathExtension];
+    return [[NSBundle mainBundle] pathForResource:pure ofType:type];
+}
+
+- (UIImage *)layerToImage:(CALayer*)layer
+{
+    UIGraphicsBeginImageContextWithOptions(layer.frame.size, NO, 0);
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *screenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return screenImage;
+}
+
+- (NSString*)stringFromDate:(NSDate*)date withFormat:(NSString*)format
+{
+    static NSDateFormatter *f = nil;
+    if (f == nil) {
+        f = [[NSDateFormatter alloc] init];
+    }
+
+    f.dateFormat = format;
+    return [f stringFromDate:date];
+}
+
+- (NSDate*)dateFromString:(NSString *)stringDate format:(NSString *)format
+{
+    static NSDateFormatter *f = nil;
+    if (f == nil) {
+        f = [[NSDateFormatter alloc] init];
+    }
+
+    f.dateFormat = format;
+    return [f dateFromString:stringDate];
+}
+
+- (BOOL)isPortrait
+{
+    UIInterfaceOrientation o = [UIApplication sharedApplication].statusBarOrientation;
+    return UIInterfaceOrientationIsPortrait(o);
+}
+
+- (void)showAlertWithMessage:(NSString *)message cancelButtonTitle:(NSString *)title
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:title otherButtonTitles:nil];
+    [alert show];
+}
+
+- (GPSStatus)currentGPSStatus
+{
+    GPSStatus status;
+    if ([CLLocationManager locationServicesEnabled] == NO) {
+        status = GPSStatusLocationServicesNotEnabled;
+    }
+    else {
+        switch ([CLLocationManager authorizationStatus]) {
+            case kCLAuthorizationStatusNotDetermined:
+                status = GPSStatusAuthorizationStatusNotDetermined;
+                break;
+            case kCLAuthorizationStatusDenied:
+                status = GPSStatusAuthorizationStatusDenied;
+                break;
+            case kCLAuthorizationStatusAuthorized:
+                status = GPSStatusAuthorizationStatusAuthorized;
+                break;
+            case kCLAuthorizationStatusRestricted:
+                status = GPSStatusAuthorizationStatusRestricted;
+                break;
+            default:
+                status = GPSStatusUnknownError;
+                break;
+        }
+    }
+    return status;
+}
+
+- (void)startUpdatingLocation
+{
+    static CLLocationManager *m = nil;
+    if (m == nil) {
+        m = [[CLLocationManager alloc] init];
+        m.delegate = (id)self;
+    }
+    [m startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    NSDictionary *info = @{ @"state": [NSNumber numberWithInteger:status] };
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLocationManagerDidChangeAuthorizationStatusNotification object:nil userInfo:info];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    [manager stopUpdatingLocation];
+    CLLocation *location = [locations lastObject];
+    if (location) {
+        CLLocationCoordinate2D coordinate = [location coordinate];
+        NSDictionary *info = @{ @"latitude": [NSNumber numberWithDouble:coordinate.latitude],
+                                @"longitude": [NSNumber numberWithDouble:coordinate.longitude] };
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLocationManagerDidUpdateLocationNotification object:nil userInfo:info];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    [manager stopUpdatingLocation];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLocationManagerDidFailNotification object:nil userInfo:@{ @"error": error }];
+}
+
+#pragma mark - Private
+- (NSString*)generateDefaultUserAgent
+{
+#if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
+    return [NSString stringWithFormat:@"%@/%@ (%@; iOS %@; Scale/%0.2f)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleExecutableKey] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleIdentifierKey], (__bridge id)CFBundleGetValueForInfoDictionaryKey(CFBundleGetMainBundle(), kCFBundleVersionKey) ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleVersionKey], [[UIDevice currentDevice] model], [[UIDevice currentDevice] systemVersion], ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] ? [[UIScreen mainScreen] scale] : 1.0f)];
+#elif defined(__MAC_OS_X_VERSION_MIN_REQUIRED)
+    return [NSString stringWithFormat:@"%@/%@ (Mac OS X %@)", [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleExecutableKey] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleIdentifierKey], [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] ?: [[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleVersionKey], [[NSProcessInfo processInfo] operatingSystemVersionString]];
+#endif
+}
+
+- (BOOL)isRetina
+{
+    return [self screenScale] > 1.0;
+}
+
+- (float)screenScale
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        return [[UIScreen mainScreen] scale];
+    }
+
+    return 1.0;
+}
+
+- (UIBarButtonItem*)createBarButtonItemWithTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents image:(UIImage*)image
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    [btn addTarget:target action:action forControlEvents:controlEvents];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    return item;
+}
+
+- (Boolean)isIPhone5
+{
+    return [UIScreen mainScreen].bounds.size.height > 480;
+}
+
+- (float)iosVersion
+{
+    return [[UIDevice currentDevice].systemVersion floatValue];
+}
+
+- (void)refreshUI
+{
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+}
+
+- (UIImage*)scaleImage:(UIImage*)image withMaxLenght:(float)maxLenght
+{
+    float longger = MAX(image.size.width, image.size.height);
+
+    UIImage *result = image;
+
+    if (longger > maxLenght) {
+
+        float newHeight = 0;
+        float newWidth = 0;
+
+        if (image.size.height > image.size.width) {
+            newHeight = maxLenght;
+            newWidth = image.size.width * newHeight / image.size.height;
+        }
+        else {
+            newWidth = maxLenght;
+            newHeight = image.size.height * newWidth / image.size.width;
+        }
+
+        float adjust = 2; //防止照片出现白边
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight)); //画布大小
+        [image drawInRect:CGRectMake(0-adjust, 0-adjust, newWidth+2*adjust, newHeight+2*adjust)]; //图片在画布的frame
+        result = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    }
+
+    return result;
+}
+
+- (void)openAppInAppStoreWithAppID:(NSString*)appID
+{
+    NSLog(@"%s", __FUNCTION__);
+}
+@end
 
 
 

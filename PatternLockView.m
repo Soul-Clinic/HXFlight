@@ -105,8 +105,8 @@
     if (column < 2) {
         NSLog(@"Error: column is too small");
     }
-    if (column * _dotSize.width + _margin.left + _margin.right >= self.frameWidth &&
-        column * _dotSize.height + _margin.top + _margin.bottom >= self.frameHeight) {
+    if (column * _dotSize.width + _margin.left + _margin.right >= self.width &&
+        column * _dotSize.height + _margin.top + _margin.bottom >= self.height) {
         NSLog(@"Error: column is too large, you can try to reduce the dot size before setting this");
     }
     else {
@@ -133,8 +133,8 @@
 - (void)updateCoordinate
 {
     float x, y, dw = MAX(_dotSize.width, _dotSize.height), padding,
-    w = self.frameWidth - _margin.left - _margin.right,
-    h = self.frameHeight - _margin.top - _margin.bottom;
+    w = self.width - _margin.left - _margin.right,
+    h = self.height - _margin.top - _margin.bottom;
 
 	if (h > w) {
         x = _margin.left;

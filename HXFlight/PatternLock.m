@@ -47,6 +47,7 @@ NSString * const kSetSucceed = @"设置成功! 请记住您的密码";
         NSLog(@"password is %@", password);
         self.infoLabel.text = kInputPassword;
     }
+
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -55,6 +56,8 @@ NSString * const kSetSucceed = @"设置成功! 请记住您的密码";
         [self inputPasswordWrong:self.pattern];
     }
 
+    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self loginSuccessfully:self.pattern];
 }
 - (void)patternLockView:(PatternLockView *)patternLockView didFinishWithValue:(NSString *)value
 {

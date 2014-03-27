@@ -55,7 +55,7 @@
         }
     }
 	UIEdgeInsets orgin = scrollView.contentInset;
-	scrollView.contentSize = CGSizeMake(scrollView.frameWidth * pages, contentSize.height);
+	scrollView.contentSize = CGSizeMake(scrollView.width * pages, contentSize.height);
 	scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top, 0, scrollView.contentInset.bottom, 0);
 
     float marginLeft = (contentSize.width - viewSize.width * columns) / (columns + 1);
@@ -70,8 +70,8 @@
             column = i - row * columns;
 
             UIView* view = subviews[n++];
-            view.frameX = marginLeft + column * (viewSize.width + marginLeft) + p * scrollView.frameWidth + orgin.left;
-            view.frameY = marginTop + row * (viewSize.height + marginTop);
+            view.x = marginLeft + column * (viewSize.width + marginLeft) + p * scrollView.width + orgin.left;
+            view.y = marginTop + row * (viewSize.height + marginTop);
             [scrollView addSubview:view];
         }
 
