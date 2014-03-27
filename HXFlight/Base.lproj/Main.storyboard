@@ -453,7 +453,7 @@
         <!--Navigation Controller - 华夏移动办公平台-->
         <scene sceneID="q39-X6-7s9">
             <objects>
-                <navigationController title="华夏移动办公平台" definesPresentationContext="YES" id="mtM-62-q90" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigation" title="华夏移动办公平台" definesPresentationContext="YES" id="mtM-62-q90" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wyi-Rd-Z3c">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.10657188622523356" green="0.37118405244738367" blue="0.8800223214285714" alpha="1" colorSpace="calibratedRGB"/>
@@ -581,7 +581,7 @@
             <objects>
                 <tabBarController title="Tar Bar" id="8YX-ce-x5E" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="华夏移动办公平台" id="e2l-ZE-DvO">
-                        <barButtonItem key="leftBarButtonItem" image="icon_2_c" style="plain" id="JdY-94-Mrd">
+                        <barButtonItem key="leftBarButtonItem" image="icon_2_c" id="JdY-94-Mrd">
                             <connections>
                                 <segue destination="JEQ-i7-0Wx" kind="modal" modalTransitionStyle="partialCurl" id="lNV-cd-IHg"/>
                             </connections>
@@ -612,152 +612,8 @@
             </objects>
             <point key="canvasLocation" x="-140" y="-1820"/>
         </scene>
-        <!--Palm Huaxia - 掌上华夏-->
-        <scene sceneID="Hkd-Gs-cyU">
-            <objects>
-                <viewController id="d38-WH-J41" customClass="PalmHuaxia" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="FUK-ko-2gJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="xqS-sO-37o"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="idA-0h-hNZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="EPC-mF-ALe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fa-KJ-Hhe">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="d38-WH-J41" id="6cn-6M-fq8"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="9Fa-KJ-Hhe" secondAttribute="bottom" constant="49" id="2Qs-x7-nKl"/>
-                            <constraint firstItem="EPC-mF-ALe" firstAttribute="leading" secondItem="idA-0h-hNZ" secondAttribute="leading" id="3hE-dR-fdA"/>
-                            <constraint firstAttribute="bottom" secondItem="EPC-mF-ALe" secondAttribute="bottom" id="Quu-5s-mLQ"/>
-                            <constraint firstAttribute="trailing" secondItem="EPC-mF-ALe" secondAttribute="trailing" id="RMV-bF-CPB"/>
-                            <constraint firstItem="9Fa-KJ-Hhe" firstAttribute="leading" secondItem="idA-0h-hNZ" secondAttribute="leading" id="dM8-53-8HK"/>
-                            <constraint firstAttribute="trailing" secondItem="9Fa-KJ-Hhe" secondAttribute="trailing" id="dXl-1o-2te"/>
-                            <constraint firstItem="9Fa-KJ-Hhe" firstAttribute="top" secondItem="idA-0h-hNZ" secondAttribute="top" constant="64" id="eRg-Zg-kZa"/>
-                            <constraint firstItem="EPC-mF-ALe" firstAttribute="top" secondItem="idA-0h-hNZ" secondAttribute="top" id="fHS-2e-jUo"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="掌上华夏" image="9FDD457E-BA41-4122-9E2D-F8C83D5DDDF7" id="wFY-SG-Oec"/>
-                    <connections>
-                        <outlet property="marginBottom" destination="2Qs-x7-nKl" id="bDy-Lx-Ztc"/>
-                        <outlet property="marginTop" destination="eRg-Zg-kZa" id="b47-Rg-eUA"/>
-                        <outlet property="scrollView" destination="9Fa-KJ-Hhe" id="rne-Ci-rVz"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PE5-dd-tht" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="405" y="-1516"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="9FDD457E-BA41-4122-9E2D-F8C83D5DDDF7" width="27" height="26">
-            <mutableData key="keyedArchiveRepresentation">
-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
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUVFRxn5+f1QwMDBEAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAgICAqIiIiLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgEAAAMAAAABABsAAAEBAAMA
-AAABABoAAAECAAMAAAAEAAALrgEDAAMAAAABAAEAAAEGAAMAAAABAAIAAAERAAQAAAABAAAACAESAAMA
-AAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABABoAAAEXAAQAAAABAAAK+AEcAAMAAAABAAEAAAFSAAMA
-AAABAAEAAAFTAAMAAAAEAAALtodzAAcAAAeoAAALvgAAAAAACAAIAAgACAABAAEAAQABAAAHqGFwcGwC
-IAAAbW50clJHQiBYWVogB9kAAgAZAAsAGgALYWNzcEFQUEwAAAAAYXBwbAAAAAAAAAAAAAAAAAAAAAAA
-APbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAALZGVzYwAAAQgAAABvZHNjbQAAAXgAAAVsY3BydAAABuQAAAA4d3RwdAAABxwAAAAUclhZWgAABzAA
-AAAUZ1hZWgAAB0QAAAAUYlhZWgAAB1gAAAAUclRSQwAAB2wAAAAOY2hhZAAAB3wAAAAsYlRSQwAAB2wA
-AAAOZ1RSQwAAB2wAAAAOZGVzYwAAAAAAAAAUR2VuZXJpYyBSR0IgUHJvZmlsZQAAAAAAAAAAAAAAFEdl
-bmVyaWMgUkdCIFByb2ZpbGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAG1sdWMAAAAAAAAAHgAAAAxza1NLAAAAKAAAAXhockhSAAAAKAAAAaBjYUVTAAAAJAAAAchw
-dEJSAAAAJgAAAex1a1VBAAAAKgAAAhJmckZVAAAAKAAAAjx6aFRXAAAAFgAAAmRpdElUAAAAKAAAAnpu
-Yk5PAAAAJgAAAqJrb0tSAAAAFgAAAshjc0NaAAAAIgAAAt5oZUlMAAAAHgAAAwBkZURFAAAALAAAAx5o
-dUhVAAAAKAAAA0pzdlNFAAAAJgAAAqJ6aENOAAAAFgAAA3JqYUpQAAAAGgAAA4hyb1JPAAAAJAAAA6Jl
-bEdSAAAAIgAAA8ZwdFBPAAAAJgAAA+hubE5MAAAAKAAABA5lc0VTAAAAJgAAA+h0aFRIAAAAJAAABDZ0
-clRSAAAAIgAABFpmaUZJAAAAKAAABHxwbFBMAAAALAAABKRydVJVAAAAIgAABNBhckVHAAAAJgAABPJl
-blVTAAAAJgAABRhkYURLAAAALgAABT4AVgFhAGUAbwBiAGUAYwBuAP0AIABSAEcAQgAgAHAAcgBvAGYA
-aQBsAEcAZQBuAGUAcgBpAQ0AawBpACAAUgBHAEIAIABwAHIAbwBmAGkAbABQAGUAcgBmAGkAbAAgAFIA
-RwBCACAAZwBlAG4A6AByAGkAYwBQAGUAcgBmAGkAbAAgAFIARwBCACAARwBlAG4A6QByAGkAYwBvBBcE
-MAQzBDAEOwRMBD0EOAQ5ACAEPwRABD4ERAQwBDkEOwAgAFIARwBCAFAAcgBvAGYAaQBsACAAZwDpAG4A
-6QByAGkAcQB1AGUAIABSAFYAQpAadSgAIABSAEcAQgAggnJfaWPPj/AAUAByAG8AZgBpAGwAbwAgAFIA
-RwBCACAAZwBlAG4AZQByAGkAYwBvAEcAZQBuAGUAcgBpAHMAawAgAFIARwBCAC0AcAByAG8AZgBpAGzH
-fLwYACAAUgBHAEIAINUEuFzTDMd8AE8AYgBlAGMAbgD9ACAAUgBHAEIAIABwAHIAbwBmAGkAbAXkBegF
-1QXkBdkF3AAgAFIARwBCACAF2wXcBdwF2QBBAGwAbABnAGUAbQBlAGkAbgBlAHMAIABSAEcAQgAtAFAA
-cgBvAGYAaQBsAMEAbAB0AGEAbADhAG4AbwBzACAAUgBHAEIAIABwAHIAbwBmAGkAbGZukBoAIABSAEcA
-QgAgY8+P8GWHTvZOAIIsACAAUgBHAEIAIDDXMO0w1TChMKQw6wBQAHIAbwBmAGkAbAAgAFIARwBCACAA
-ZwBlAG4AZQByAGkAYwOTA7UDvQO5A7oDzAAgA8ADwQO/A8YDrwO7ACAAUgBHAEIAUABlAHIAZgBpAGwA
-IABSAEcAQgAgAGcAZQBuAOkAcgBpAGMAbwBBAGwAZwBlAG0AZQBlAG4AIABSAEcAQgAtAHAAcgBvAGYA
-aQBlAGwOQg4bDiMORA4fDiUOTAAgAFIARwBCACAOFw4xDkgOJw5EDhsARwBlAG4AZQBsACAAUgBHAEIA
-IABQAHIAbwBmAGkAbABpAFkAbABlAGkAbgBlAG4AIABSAEcAQgAtAHAAcgBvAGYAaQBpAGwAaQBVAG4A
-aQB3AGUAcgBzAGEAbABuAHkAIABwAHIAbwBmAGkAbAAgAFIARwBCBB4EMQRJBDgEOQAgBD8EQAQ+BEQE
-OAQ7BEwAIABSAEcAQgZFBkQGQQAgBioGOQYxBkoGQQAgAFIARwBCACAGJwZEBjkGJwZFAEcAZQBuAGUA
-cgBpAGMAIABSAEcAQgAgAFAAcgBvAGYAaQBsAGUARwBlAG4AZQByAGUAbAAgAFIARwBCAC0AYgBlAHMA
-awByAGkAdgBlAGwAcwBldGV4dAAAAABDb3B5cmlnaHQgMjAwNyBBcHBsZSBJbmMuLCBhbGwgcmlnaHRz
-IHJlc2VydmVkLgBYWVogAAAAAAAA81IAAQAAAAEWz1hZWiAAAAAAAAB0TQAAPe4AAAPQWFlaIAAAAAAA
-AFp1AACscwAAFzRYWVogAAAAAAAAKBoAABWfAAC4NmN1cnYAAAAAAAAAAQHNAABzZjMyAAAAAAABDEIA
-AAXe///zJgAAB5IAAP2R///7ov///aMAAAPcAADAbNIlJicoWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBO
-U0JpdG1hcEltYWdlUmVwoykqK18QEE5TQml0bWFwSW1hZ2VSZXBaTlNJbWFnZVJlcFhOU09iamVjdNIl
-Ji0uV05TQXJyYXmiLSvSJSYwMV5OU011dGFibGVBcnJheaMwLSvTMzQKNTY3V05TV2hpdGVcTlNDb2xv
-clNwYWNlRDAgMAAQA4AM0iUmOTpXTlNDb2xvcqI5K9IlJjw9V05TSW1hZ2WiPCtfEA9OU0tleWVkQXJj
-aGl2ZXLRQEFUcm9vdIABAAgAEQAaACMALQAyADcARgBMAFcAXgBlAHIAeQCBAIMAhQCKAIwAjgCXAJwA
-pwCpAKsArQCyALUAtwC5ALsAvQDCANkA2wDdFEcUTBRXFGAUcxR3FIoUlRSeFKMUqxSuFLMUwhTGFM0U
-1RTiFOcU6RTrFPAU+BT7FQAVCBULFR0VIBUlAAAAAAAAAgEAAAAAAAAAQgAAAAAAAAAAAAAAAAAAFSc
-</mutableData>
-        </image>
         <image name="background" width="720" height="1280"/>
         <image name="bans01" width="695" height="133"/>
         <image name="friend_info_mail" width="55" height="55"/>

@@ -388,7 +388,7 @@ NSString* getLanguageCode(void)
     [request setHTTPBody:body];
 
     // set the content-length
-    NSString *postLength = [NSString stringWithFormat:@"%d", [body length]];
+    NSString *postLength = [NSString stringWithFormat:@"%d", (int)[body length]];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 
     // set URL
@@ -427,7 +427,7 @@ NSString* getLanguageCode(void)
 
         // add image data
         NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
-        NSLog(@"Image data length = %i", imageData.length);
+        NSLog(@"Image data length = %i", (int)imageData.length);
         if (imageData) {
             [body appendData:[[NSString stringWithFormat:@"--%@\r\n", BoundaryConstant] dataUsingEncoding:NSUTF8StringEncoding]];
             [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpg\"\r\n", imageFieldName] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -443,7 +443,7 @@ NSString* getLanguageCode(void)
     [request setHTTPBody:body];
 
     // set the content-length
-    NSString *postLength = [NSString stringWithFormat:@"%d", [body length]];
+    NSString *postLength = [NSString stringWithFormat:@"%d", (int)[body length]];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 
     // set URL
@@ -507,7 +507,7 @@ NSString* getLanguageCode(void)
     UIGraphicsEndImageContext();
     NSData* jpeg = UIImageJPEGRepresentation(image, 1.f);
     NSData* png = UIImagePNGRepresentation(image);
-    NSLog(@"Jpeg length = %i\tPng length = %i", jpeg.length / 1024, png.length / 1024);
+    NSLog(@"Jpeg length = %i\tPng length = %i", (int)jpeg.length / 1024,(int)png.length / 1024);
     
     return image;
 }
