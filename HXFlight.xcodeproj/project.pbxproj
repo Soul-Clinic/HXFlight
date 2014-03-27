@@ -10,6 +10,7 @@
 		3613951918DDEA25002FA4B2 /* ViewOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613951818DDEA25002FA4B2 /* ViewOperation.m */; };
 		3613951F18DE46CE002FA4B2 /* Menu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613951E18DE46CE002FA4B2 /* Menu.m */; };
 		3613952518DF2416002FA4B2 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613952418DF2416002FA4B2 /* Profile.m */; };
+		36338FFC18E454C0005ECA4D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 36338FFB18E454C0005ECA4D /* README.md */; };
 		366CB6EA18DB572D007E9A6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6E918DB572D007E9A6F /* Foundation.framework */; };
 		366CB6EC18DB572D007E9A6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6EB18DB572D007E9A6F /* CoreGraphics.framework */; };
 		366CB6EE18DB572D007E9A6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366CB6ED18DB572D007E9A6F /* UIKit.framework */; };
@@ -50,6 +51,7 @@
 		3613951E18DE46CE002FA4B2 /* Menu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Menu.m; sourceTree = "<group>"; };
 		3613952318DF2416002FA4B2 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Profile.h; path = ../Profile.h; sourceTree = "<group>"; };
 		3613952418DF2416002FA4B2 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Profile.m; path = ../Profile.m; sourceTree = "<group>"; };
+		36338FFB18E454C0005ECA4D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = SOURCE_ROOT; };
 		366CB6E618DB572D007E9A6F /* HXFlight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HXFlight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		366CB6E918DB572D007E9A6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		366CB6EB18DB572D007E9A6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -161,6 +163,7 @@
 				366CB6F218DB572D007E9A6F /* InfoPlist.strings */,
 				366CB6F518DB572D007E9A6F /* main.m */,
 				366CB6F718DB572D007E9A6F /* HXFlight-Prefix.pch */,
+				36338FFB18E454C0005ECA4D /* README.md */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36338FFC18E454C0005ECA4D /* README.md in Resources */,
 				366CB70518DB572D007E9A6F /* Images.xcassets in Resources */,
 				366CB6F418DB572D007E9A6F /* InfoPlist.strings in Resources */,
 				366CB6FD18DB572D007E9A6F /* Main.storyboard in Resources */,
