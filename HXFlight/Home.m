@@ -17,6 +17,7 @@
     NSDictionary* shortcuts;
     NSMutableArray*	_buttons;
     CGRect scrollFrame;
+    ShortCutViewController* _shortcutController;
     BOOL done;
 }
 @end
@@ -26,7 +27,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    NSLog(@"%@", self.childViewControllers);
+    _shortcutController = self.childViewControllers.firstObject;
+    _scrollView = _shortcutController.scrollView;
+    _shortcutController.delegate = self;
+    _scrollView.delegate = self;
+//    return;
     _marginBottom.constant = self.tabBarController.tabBar.height;
 
     if (!isiOS7()) {
@@ -82,158 +88,23 @@
         [button setImageEdgeInsets:UIEdgeInsetsMake(0, iconX, button.height - icon.size.height , iconX)];
         [button setTitleEdgeInsets:UIEdgeInsetsMake(icon.size.height, -(button.width - textX), 0, 0)];
 		button.showsTouchWhenHighlighted = YES;
-        UILongPressGestureRecognizer* longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
-        [button addGestureRecognizer:longPress];
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-		UIPanGestureRecognizer* pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
-        [button addGestureRecognizer:pan];
-        button.userInteractionEnabled = YES;
         [_buttons addObject:button];
+        if ([key isEqual:lastKey]) {
+            _shortcutController.staticViews = @[button];
+        }
     }
 
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(changToRightTab:)];
 	[swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.view addGestureRecognizer:swipeLeft];
 }
-- (IBAction)handlePanGesture:(UIPanGestureRecognizer *)sender
-{
-    static CGPoint start;
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        start = sender.view.origin;
-    }
-    CGPoint translation = [sender translationInView:sender.view];
-	sender.view.origin = CGPointMake(start.x + translation.x, start.y + translation.y);
 
-    NSLog(@"%i - Location is %@\tTranspation is %@,\tvelocity is %@", (int)sender.state, NSStringFromCGPoint([sender locationInView:sender.view]), NSStringFromCGPoint([sender translationInView:sender.view]), NSStringFromCGPoint([sender velocityInView:sender.view]));
+- (void)shortcutViewController:(ShortCutViewController*)controller OrdersDidUpdate:(NSArray*)newOrders
+{
+    NSLog(@"New orders: %@", newOrders);
 }
 
-- (void)rotation:(UIButton*)button
-{
-    CGFloat rotationAngle = M_PI / 20;
-    static BOOL left = YES;
-    static void (^ shake)(void);
-    if (shake == nil) {
-        shake = ^(void) {
-            CGAffineTransform transform = CGAffineTransformRotate(button.transform, left ? -rotationAngle : rotationAngle);
-            NSLog(@"Button is %@", button.titleLabel.text);
-            button.transform = transform;
-            left = !left;
-        };
-    }
-
-    static void (^const complete)(BOOL) = ^(BOOL finished) {
-//        NSLog(@"Insider complete");
-		[UIView animateWithDuration:0.2 animations:shake completion:complete];
-    };
-    complete(YES);
-    NSLog(@"Roo");
-	return;
-    NSLog(@"Rotation");
-    [UIView animateWithDuration:0.2 animations:shake completion:^(BOOL finished) {
-        NSLog(@"Complete %i", finished);
-        if (finished) {
-            [self rotation:button];
-        }
-    }];
-
-  
-}
-
-- (IBAction)longPressed:(UIGestureRecognizer *)sender
-{
-    //3 = (int)UIGestureRecognizerStateEnded
-	NSLog(@"%@ is long pressed %i ", ((UIButton*)sender.view).titleLabel.text, (int)sender.state);
-    __block UIButton* button = (UIButton*)sender.view;
-
-	if (sender.state == UIGestureRecognizerStateBegan) {
-
-//        button.frame = CGRectOffset(button.frame, button.superview.x, button.superview.y);
-//		[button.superview.superview addSubview:button];
-
-		done = NO;
-        CGFloat rotationAngle = M_PI / 10;
-        static BOOL left = YES;
-        static void (^ shake)(void);
-        if (shake == nil) {
-            shake = ^(void) {
-                CGAffineTransform transform = CGAffineTransformRotate(button.transform, left ? -rotationAngle : rotationAngle);
-                button.transform = transform;
-                left = !left;
-            };
-        }
-
-        static void (^complete)(BOOL);
-        if (complete == nil) {
-            complete = ^(BOOL finished) {
-                NSLog(@"Insider complete");
-                if (done) {
-
-                    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^ {
-						button.transform = CGAffineTransformIdentity;
-                    } completion:nil];
-                }
-                else {
-                [UIView animateWithDuration:0.3 animations:shake completion:complete];
-                }
-            };
-        }
-
-        complete(YES);
-//        [self rotation:button];
-		[self performSelector:@selector(doneRotation:) withObject:button afterDelay:2];
-
-//        [self rotation:button];
-        //        [UIView animateWithDuration:.12 animations:^{
-//            CGAffineTransform transform = CGAffineTransformMakeTranslation(-50, -40);
-//            transform = CGAffineTransformScale(transform, 1.3, 1.3);
-//            button.transform = transform;
-//        } completion:^(BOOL finished) {
-//
-//            [UIView animateWithDuration:0.52 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionAutoreverse
-//                             animations:left completion:^(BOOL finished) {
-//
-//                [UIView animateWithDuration:0.4 animations:^{
-//                    CGAffineTransform transform = CGAffineTransformRotate(button.transform, -rotationAngle);
-//                    button.transform = transform;
-//                }];
-//
-//            }];
-//        }];
-
-//        float rotations = 1;
-//        CABasicAnimation* rotationAnimation;
-//        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//        rotationAnimation.toValue = [NSNumber numberWithFloat: M_PI * 2.0 /* full rotation*/ * rotations];
-//        rotationAnimation.duration = 3.5;
-//        rotationAnimation.cumulative = YES;
-//        rotationAnimation.repeatCount = HUGE_VALF;
-//
-//        [button.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-
-//        [UIView animateWithDuration:1 delay:2 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-//            NSLog(@"Start");
-//            button.transform = CGAffineTransformMakeRotation(M_PI * 1.9);
-//        } completion:^(BOOL finished) {
-//            NSLog(@"Finish");
-//        }];
-    }
-    if (sender.state == UIGestureRecognizerStateEnded + 10.) {
-		[UIView animateWithDuration:0.1 animations:^{
-            button.transform = CGAffineTransformMakeRotation(0);
-        }];
-		return;
-
-    }
-
-}
-- (void)doneRotation:(UIButton*)button
-{
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^ {
-        button.transform = CGAffineTransformIdentity;
-    } completion:nil];
-
-//    done = YES;
-}
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesEnded:touches withEvent:event];
@@ -282,7 +153,8 @@
 - (IBAction)buttonClicked:(UIButton*)sender
 {
     AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
-    NSLog(@"Hello, %@ is clicked.", sender.titleLabel.text);}
+    NSLog(@"Hello, %@ is clicked.  %@   %@", sender.titleLabel.text, _scrollView, NSStringFromCGSize(_scrollView.contentSize) );
+}
 
 - (void)viewDidLayoutSubviews
 {

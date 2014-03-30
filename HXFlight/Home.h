@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShortCutViewController.h"
 @interface Home : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

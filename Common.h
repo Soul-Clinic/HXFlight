@@ -11,16 +11,18 @@
 
 
 #ifndef __FEDEBUG
-	#define __FEDEBUG
+#define __FEDEBUG
 #endif
 
 
 #ifdef __FEDEBUG
-	#define FELog(s, ...) NSLog(@"%s —> %@", __func__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
+#define FELog(s, ...) NSLog(@"%s —> %@", __func__, [NSString stringWithFormat:(s), ##__VA_ARGS__])
 #else
-	#define FELog(s, ...)
+#define FELog(s, ...)
 #endif
 
+
+#define LogFun		NSLog(@"%s", __func__)
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define kCommon [FECommon sharedInstance]
@@ -82,6 +84,7 @@ typedef enum {
 - (void)centerVerticallyInSuperview;
 - (void)centerHorizontallyInSuperview;
 - (void)printSubviewsTree;		//By Can
+- (void)printSuperViewsTree;
 @end
 
 

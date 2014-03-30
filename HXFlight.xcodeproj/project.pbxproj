@@ -32,6 +32,7 @@
 		3674507918E0CDB800F2E6EE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3674507818E0CDB800F2E6EE /* AudioToolbox.framework */; };
 		36A3E56718DF935900FAF7E8 /* PatternLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3E56618DF935900FAF7E8 /* PatternLockView.m */; };
 		36A3E56A18DFBA5900FAF7E8 /* PatternLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A3E56918DFBA5900FAF7E8 /* PatternLock.m */; };
+		36DE9C1318E8C0AC000F4EC7 /* ShortCutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36DE9C1218E8C0AC000F4EC7 /* ShortCutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,8 @@
 		36A3E56618DF935900FAF7E8 /* PatternLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternLockView.m; sourceTree = "<group>"; };
 		36A3E56818DFBA5900FAF7E8 /* PatternLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PatternLock.h; sourceTree = "<group>"; };
 		36A3E56918DFBA5900FAF7E8 /* PatternLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PatternLock.m; sourceTree = "<group>"; };
+		36DE9C1118E8C0AC000F4EC7 /* ShortCutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShortCutViewController.h; sourceTree = "<group>"; };
+		36DE9C1218E8C0AC000F4EC7 /* ShortCutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShortCutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,8 @@
 		366CB77218DB8841007E9A6F /* Toolkit */ = {
 			isa = PBXGroup;
 			children = (
+				36DE9C1118E8C0AC000F4EC7 /* ShortCutViewController.h */,
+				36DE9C1218E8C0AC000F4EC7 /* ShortCutViewController.m */,
 				3613951718DDEA25002FA4B2 /* ViewOperation.h */,
 				3613951818DDEA25002FA4B2 /* ViewOperation.m */,
 				366CB76F18DB883C007E9A6F /* Common.h */,
@@ -330,6 +335,7 @@
 				3613952518DF2416002FA4B2 /* Profile.m in Sources */,
 				36A3E56A18DFBA5900FAF7E8 /* PatternLock.m in Sources */,
 				366CB6F618DB572D007E9A6F /* main.m in Sources */,
+				36DE9C1318E8C0AC000F4EC7 /* ShortCutViewController.m in Sources */,
 				366CB77118DB883C007E9A6F /* Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

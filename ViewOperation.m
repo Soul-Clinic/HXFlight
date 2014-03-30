@@ -58,6 +58,7 @@
 	scrollView.contentSize = CGSizeMake(scrollView.width * pages, contentSize.height);
 	scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top, 0, scrollView.contentInset.bottom, 0);
 
+
     float marginLeft = (contentSize.width - viewSize.width * columns) / (columns + 1);
     if (marginTop < 0) {
         marginTop = (contentSize.height - rows * viewSize.height) / (rows + 1);
