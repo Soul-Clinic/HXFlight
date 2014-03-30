@@ -26,7 +26,6 @@
 
 #define kMaxDifferInSameLine            12.0
 
-//#define TESTING
 
 enum LocationClass
 {
@@ -44,7 +43,7 @@ enum LocationClass
 	float _zPosition;
 	int _currentIndex, _destinationIndex, _appending, _pageIndex;
 	BOOL _layoutUpdated, _firing, _justEnd, _moving;
-	CGPoint _currentLocation;
+	CGPoint _currentLocation, _lastOffset;
 }
 @end
 
@@ -102,34 +101,38 @@ enum LocationClass
 {
     static BOOL initialized = NO;
     if (!initialized) {
-        self.view.superview.backgroundColor = [UIColor clearColor];
         [self updateSubviews];
         [self alignShortcuts];
         initialized = YES;
+        self.view.superview.backgroundColor = [UIColor clearColor];
     }
     if (_scrollView.contentSize.width == 0) {
         _scrollView.contentSize = [self _minContentSizeToWrapViews:_shortcuts];
+        _scrollView.contentOffset = _lastOffset;
     }
-
-
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 
-    NSLog(@"My content size is %@", NSStringFromCGSize(_scrollView.contentSize));
-#ifdef TESTING
-	_scrollView.contentSize = CGSizeMake(_scrollView.width * 4, _scrollView.height);
-	_scrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"flyship.jpg"]];
-    _scrollView.layer.cornerRadius = 10;
-    _staticViews = @[_scrollView.subviews[3], _scrollView.subviews[7]];
-#endif
-    _scrollView.contentSize = [self _minContentSizeToWrapViews:_shortcuts];
+    if (_scrollView.contentSize.width == 0) {
+        _scrollView.contentSize = [self _minContentSizeToWrapViews:_shortcuts];
+    }
+
     _containerView = _scrollView.superview.superview;
     if (_containerView == nil) {
         _containerView = _scrollView.superview;
     }
 }
+
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"Offset is %@", NSStringFromCGPoint(_scrollView.contentOffset));
+    _lastOffset = _scrollView.contentOffset;
+}
+
 - (CGSize)_minContentSizeToWrapViews:(NSArray*)views
 {
     if (_vertical) {
