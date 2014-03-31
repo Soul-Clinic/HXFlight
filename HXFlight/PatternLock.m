@@ -57,7 +57,7 @@ NSString * const kSetSucceed = @"设置成功! 请记住您的密码";
     }
 
     self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self loginSuccessfully:self.pattern];
+//    [self loginSuccessfully:self.pattern];
 }
 - (void)patternLockView:(PatternLockView *)patternLockView didFinishWithValue:(NSString *)value
 {
