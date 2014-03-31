@@ -15,7 +15,7 @@
 #define kPressAlpha				0.9
 #define kShakeAngle				(10.0 / 180.0 * M_PI)
 #define kShakeTimeframe			0.1
-#define kStandDuration          0.8
+#define kStandardDuration       0.8
 #define kMoveDuration			0.5
 #define kPressScaleFactor		1.3
 #define kLocationScrollBorder	25.0
@@ -42,7 +42,7 @@ enum LocationClass
 	UIView* _pressingView, *_containerView;
 	float _zPosition;
 	int _currentIndex, _destinationIndex, _appending, _pageIndex;
-	BOOL _layoutUpdated, _firing, _justEnd, _moving;
+	BOOL _layoutUpdated, _firing, _justEnd, _moving, _initialized;
 	CGPoint _currentLocation, _lastOffset;
 }
 @end
@@ -57,7 +57,6 @@ enum LocationClass
     _staticViews = @[];
     _alignStaticViews = YES;
 	_currentIndex = _destinationIndex = kLocationOutsideShortcuts;
-//    _vertical = YES;
 }
 - (id)init
 {
@@ -99,11 +98,10 @@ enum LocationClass
 
 - (void)viewDidLayoutSubviews
 {
-    static BOOL initialized = NO;
-    if (!initialized) {
+    if (!_initialized) {
         [self updateSubviews];
         [self alignShortcuts];
-        initialized = YES;
+        _initialized = YES;
         self.view.superview.backgroundColor = [UIColor clearColor];
     }
     if (_scrollView.contentSize.width == 0) {
@@ -129,7 +127,6 @@ enum LocationClass
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"Offset is %@", NSStringFromCGPoint(_scrollView.contentOffset));
     _lastOffset = _scrollView.contentOffset;
 }
 
@@ -184,9 +181,9 @@ enum LocationClass
 
             UIView* shortcut = _shortcuts[n];
             float x = (_vertical ? 0 : page * _scrollView.width) + (col + 1) * _margins.left
-                + col * _margins.right + col * shortcut.width ;
+            + col * _margins.right + col * shortcut.width ;
             float y = (_vertical ? page * _scrollView.height : 0) + (row + 1) * _margins.top
-                + row * _margins.bottom + row * shortcut.height;
+            + row * _margins.bottom + row * shortcut.height;
             CGRect frame = CGRectMake(x, y, shortcut.width, shortcut.height);
 
 
@@ -260,7 +257,7 @@ enum LocationClass
 
 		[_shortcuts addObject:aView];
 	}
-//Update origins and orders
+    //Update origins and orders
 	[self _resortShortcutsIndex];
     [_orders removeAllObjects];
 	for (int i = 0; i < _shortcuts.count; ++i) {
@@ -273,6 +270,13 @@ enum LocationClass
         [self _calculateColumnRow];
     }
 
+}
+- (void)setStaticViews:(NSArray *)staticViews
+{
+    _staticViews = staticViews;
+    if (_initialized) {
+        [self updateSubviews];
+    }
 }
 
 - (void)_calculateColumnRow
@@ -300,7 +304,6 @@ enum LocationClass
             _rows++;
         }
 	}
-    NSLog(@"Columns is %i; rows is %i", _columns, _rows);
 }
 - (int)_pressingIndex
 {
@@ -441,7 +444,7 @@ enum LocationClass
 
 			layer.zPosition = 100;
 
-			[layer addAnimation:[self _scaleAnimationFactor:kPressScaleFactor duration:0.2 * kStandDuration] forKey:kScaleAnimationKey];
+			[layer addAnimation:[self _scaleAnimationFactor:kPressScaleFactor duration:0.2 * kStandardDuration] forKey:kScaleAnimationKey];
 			for (UIView* aView in _shortcuts) {
 				if (aView != shortcut) {
 					[aView.layer addAnimation:[self _shakeAnimationAngle:kShakeAngle duration:kShakeTimeframe] forKey:kShakeAnimationKey];
@@ -458,17 +461,15 @@ enum LocationClass
 				[timer invalidate];
 			}
 			timer = [NSTimer scheduledTimerWithTimeInterval:kQuietTimeIntervalBetween target:self selector:@selector(_offsetDetection:) userInfo:distances repeats:YES];
-            timer.tolerance = 0.06;
+            if ([timer respondsToSelector:@selector(setTolerance:)]) {
+                timer.tolerance = 0.06;
+            }
 
             _records = [_shortcuts copy];
-            NSLog(@"Press: %@", NSStringFromCGSize(_scrollView.contentSize));
 			break;
 		}
 		case UIGestureRecognizerStateChanged:
 		{
-//			if (_firing) {
-//				return;
-//			}
 			_currentLocation = [gesture locationInView:_containerView];
 			currentOrigin = CGPointMake(start.x + (_currentLocation.x - beginLocation.x),
 										start.y + (_currentLocation.y - beginLocation.y));
@@ -501,7 +502,7 @@ enum LocationClass
 	[layer removeAnimationForKey:kScaleAnimationKey];
 
     [self _resortShortcutsIndex];
-	float duration = (_currentIndex >= 0 ? 0.2 : 0.6) * kStandDuration;
+	float duration = (_currentIndex >= 0 ? 0.2 : 0.6) * kStandardDuration;
     _scrollView.scrollEnabled = NO;
 	[UIView animateWithDuration:duration
 						  delay:0
@@ -550,8 +551,6 @@ enum LocationClass
                          if ([_delegate respondsToSelector:@selector(shortcutViewController:OrdersDidUpdate:)]) {
                              [_delegate shortcutViewController:self OrdersDidUpdate:[NSArray arrayWithArray:_orders]];
                          }
-//                         NSLog(@"%@", _orders);
-                         //TODO: Call the delegate method
 
 					 }];
 }
@@ -766,11 +765,6 @@ enum LocationClass
 						 }];
 	}
 }
-
-
-
-
-
 
 
 
