@@ -12,3 +12,7 @@
 - (IBAction)dismiss:(id)sender;
 - (IBAction)finishedDoingWhatever:(UIStoryboardSegue *)sender;
 @end
+
+@interface NSArray (ForDebuging)
+- (void)_forgetDependentConstraint:(id)nothing;
+@end

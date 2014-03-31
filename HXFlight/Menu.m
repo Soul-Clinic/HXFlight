@@ -43,3 +43,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
+
+
+@implementation NSArray (ForDebuging)
+
+- (void)_forgetDependentConstraint:(id)nothing
+{
+    NSLog(@"What the hell?");
+}
+
+@end

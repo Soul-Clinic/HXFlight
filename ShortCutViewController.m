@@ -100,7 +100,7 @@ enum LocationClass
 {
     if (!_initialized) {
         [self updateSubviews];
-        [self alignShortcuts];
+//        [self alignShortcuts];
         _initialized = YES;
         self.view.superview.backgroundColor = [UIColor clearColor];
     }
