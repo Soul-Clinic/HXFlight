@@ -92,6 +92,8 @@ enum LocationClass
 	}
 	_scrollView.backgroundColor = self.view.backgroundColor;
     _scrollView.pagingEnabled = YES;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.showsVerticalScrollIndicator = NO;
 	self.view = _scrollView;
 
 }
@@ -428,7 +430,9 @@ enum LocationClass
 	switch (gesture.state) {
 		case UIGestureRecognizerStateBegan:
 		{
-			AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);			//Only work on iPhone
+            if (_vibrateOnResort) {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);			//Only work on iPhone
+            }
 
 			shortcut.alpha *= kPressAlpha;
 			beginLocation = [gesture locationInView:_containerView];

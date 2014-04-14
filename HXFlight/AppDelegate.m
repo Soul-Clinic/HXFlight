@@ -28,8 +28,7 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    NSLog(@"Resign active");
-
+    NSLog(@"Resign active, should not lock screen");
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -37,9 +36,13 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to itΩs current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 	NSLog(@"Enter Background");
+    [self lockScreen];
+}
+
+- (void)lockScreen
+{
     [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate new]];
-//    [self.window.rootViewController dismissViewControllerAnimated:NO completion:nil];
 }
 
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ShortCutViewController.h"
-@interface Home : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface Home : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, ShortCutOrdersUpdateDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;

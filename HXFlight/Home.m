@@ -31,8 +31,8 @@
     _shortcutController = self.childViewControllers.firstObject;
     _scrollView = _shortcutController.scrollView;
     _shortcutController.delegate = self;
+//    _shortcutController.vibrateOnResort = YES;
     _scrollView.delegate = self;
-//    return;
     _marginBottom.constant = self.tabBarController.tabBar.height;
 
     if (!isiOS7()) {
@@ -152,7 +152,7 @@
 
 - (IBAction)buttonClicked:(UIButton*)sender
 {
-    AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
+//    AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     NSLog(@"Hello, %@ is clicked.  %@   %@", sender.titleLabel.text, _scrollView, NSStringFromCGSize(_scrollView.contentSize) );
 }
 

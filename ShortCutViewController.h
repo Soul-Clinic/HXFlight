@@ -22,10 +22,13 @@
 @property (assign, nonatomic) int rows;
 @property (assign, nonatomic) BOOL vertical;
 @property (assign, nonatomic) UIEdgeInsets margins;
+/**
+ The views that won't be moved
+ */
 @property (strong, nonatomic) NSArray* staticViews;
 @property (assign, nonatomic) BOOL alignStaticViews;
 @property (weak, nonatomic) id<ShortCutOrdersUpdateDelegate> delegate;
-
+@property (assign, nonatomic) BOOL vibrateOnResort;
 - (void)updateSubviews;
 - (void)alignShortcuts;
 @end
